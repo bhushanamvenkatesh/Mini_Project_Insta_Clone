@@ -1,0 +1,77 @@
+* {
+  border: border-box;
+}
+
+.b {
+  border: 2px solid goldenrod;
+}
+
+.d-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.d-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  height: 100vh;
+  width: 100vw;
+  padding: 30px;
+  align-items: center;
+}
+.my-form {
+  background: #fefeff;
+  box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
+  border-radius: 8px;
+  height: 456px;
+  width: 456px;
+  margin: 15px;
+  padding: 10px;
+}
+
+.insta-share-image {
+  height: 33px;
+  width: 53.4px;
+}
+
+.user-name-container {
+  margin: 5px;
+}
+
+.username {
+  margin: 3px;
+  font-weight: 500;
+}
+
+.input-container {
+  background: #eeeeee;
+  border-radius: 2px;
+  height: 38px;
+  width: 350px;
+  outline: none;
+  border: none;
+}
+
+.login-button {
+  background: blue;
+  border-radius: 5px;
+  height: 38px;
+  width: 350px;
+  outline: none;
+  border: none;
+  color: white;
+  margin: 15px;
+}
+
+.login-image-container {
+  margin: 15px;
+}
+
+.error-msg {
+  color: red;
+}
