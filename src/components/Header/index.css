@@ -1,0 +1,66 @@
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background: #ffffff;
+  box-shadow: 0px 1px 1px 0px #bfbfbf;
+}
+
+.logo-text-container {
+  display: flex;
+
+  padding: 5px;
+}
+
+.insta-share-text {
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.search-container {
+  width: 214px;
+  height: 28px;
+
+  background: #fafafa;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.link-style {
+  text-decoration: none;
+  margin: 10px;
+  font-weight: 700;
+}
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logout-button {
+  padding: 8px 24px;
+  width: 86px;
+  height: 32px;
+  background: #4094ef;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  margin-left: 15px;
+  font-weight: 500;
+}
+.header-rem-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-container {
+}
