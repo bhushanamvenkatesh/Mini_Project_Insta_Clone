@@ -4,6 +4,7 @@ import NotFound from './components/NotFound'
 
 import Login from './components/Login'
 import Home from './components/Home'
+// import InstaContext from './Context/InstaContext'
 
 const App = () => (
   <>

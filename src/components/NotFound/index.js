@@ -3,7 +3,7 @@ import './index.css'
 const NotFound = props => {
   const onClickHomePage = () => {
     const {history} = props
-    history.replace('./login')
+    history.replace('./')
   }
 
   return (

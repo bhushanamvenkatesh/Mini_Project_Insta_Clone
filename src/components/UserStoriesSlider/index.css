@@ -27,10 +27,25 @@
   border-radius: 35px;
 }
 
-.slick-item {
-  align-items: center;
-  border: 2px solid goldenrod;
+.item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  font-weight: 600;
+}
+
+.story-image {
+  height: 70px;
+  width: 70px;
+  border-radius: 35px;
+}
+.story-image-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: black;
 }
