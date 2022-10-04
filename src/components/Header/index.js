@@ -3,8 +3,6 @@ import {Link, withRouter} from 'react-router-dom'
 import {BiSearch} from 'react-icons/bi'
 
 const Header = props => {
-  console.log('g')
-
   const onClickSearchIcon = () => {}
 
   const onChangeInput = event => {

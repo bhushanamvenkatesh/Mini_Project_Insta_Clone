@@ -2,4 +2,12 @@
   background: #fafafa;
   width: 1440px;
   height: 2086px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
 }

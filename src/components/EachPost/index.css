@@ -1,0 +1,95 @@
+.post-container {
+  width: 1040px;
+  height: 866px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px 4px 0px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-image-container {
+  box-sizing: border-box;
+  width: 1040px;
+  height: 60px;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px 4px 0px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 25px;
+}
+
+.profile-image {
+  width: 28px;
+  height: 28px;
+  border: 1px solid green;
+  border-radius: 30px;
+  margin: 10px;
+}
+
+.user-name {
+  font-size: 14px;
+}
+
+.post-image {
+  width: 1040px;
+  height: 614px;
+}
+
+.post-details-container {
+  padding: 10px;
+}
+.icons {
+  display: flex;
+  flex-direction: row;
+}
+.heart-icon {
+  color: red;
+  margin: 5px;
+}
+
+.comment-icon {
+  margin: 5px;
+}
+
+.share {
+  margin: 5px;
+}
+
+.likes {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+
+  color: #262626;
+}
+
+.caption {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #262626;
+}
+
+.time {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+
+  color: #989898;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0px;
+}
