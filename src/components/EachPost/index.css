@@ -32,10 +32,12 @@
 }
 
 .user-name {
-  font-size: 14px;
+  font-size: 16px;
+  color: black;
+  font-family: 'roboto';
 }
 
-.post-image {
+.post-image1 {
   width: 1040px;
   height: 614px;
 }
@@ -92,4 +94,8 @@
 .comments-list {
   list-style: none;
   padding: 0px;
+}
+
+.user-id {
+  text-decoration: none;
 }

@@ -1,10 +1,12 @@
 import {Component} from 'react'
+import {RiAlertFill} from 'react-icons/ri'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import UserStoriesSlider from '../UserStoriesSlider'
 import Header from '../Header'
 import './index.css'
 import EachPost from '../EachPost'
+
 // import InstaContext from '../../Context/InstaContext'
 
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
@@ -46,7 +48,7 @@ class Home extends Component {
     if (response.ok === true) {
       this.onGetPostsDataSuccess(data)
     } else {
-      this.setState({postsDataStatusError: true})
+      this.setState({postsStatus: statusContstants.postFailure})
     }
   }
 
@@ -61,7 +63,7 @@ class Home extends Component {
 
   onGetPostsDataSuccess = data => {
     const postList = data.posts
-    const totalPosts = data.total
+    //  const totalPosts = data.total
 
     const formattedPostsList = postList.map(each => ({
       comments: this.getComments(each.comments),
@@ -115,6 +117,10 @@ class Home extends Component {
     </div>
   )
 
+  onClickUserStories = () => {
+    this.getHomeData()
+  }
+
   renderStoriesSlider = () => {
     const {userStoriesList, userStoriesStatus} = this.state
 
@@ -122,7 +128,11 @@ class Home extends Component {
       case 'SUCCESS':
         return <UserStoriesSlider userStoriesList={userStoriesList} />
       case 'FAIL':
-        return <button>Retry</button>
+        return (
+          <button type="button" onClick={this.onClickUserStories}>
+            Retry
+          </button>
+        )
       case 'INITIAL':
         return this.renderLoader()
 
@@ -131,16 +141,38 @@ class Home extends Component {
     }
   }
 
-  renderPosts = () => {
+  onClickLike = userId => {
     const {postsList} = this.state
     console.log(postsList)
+    const updatedLikes = postsList.map(each => {
+      if (each.userId === userId) {
+        return {...each, likesCount: each.likesCount + 1}
+      }
+      return each
+    })
+
+    console.log(userId)
+    console.log(updatedLikes)
+  }
+
+  renderPosts = () => {
+    const {postsList} = this.state
+    // console.log(postsList)
     return (
       <ul>
         {postsList.map(each => (
-          <EachPost each={each} key={each.postId} />
+          <EachPost
+            each={each}
+            key={each.postId}
+            onClickLike={this.onClickLike}
+          />
         ))}
       </ul>
     )
+  }
+
+  onClickPostRetry = () => {
+    this.getPostsData()
   }
 
   renderPostsSection = () => {
@@ -151,7 +183,19 @@ class Home extends Component {
       case 'SUCCESS':
         return this.renderPosts()
       case 'FAIL':
-        return <button>Retry</button>
+        return (
+          <div className="home-retry">
+            <RiAlertFill className="alert-triangle" />
+            <p>Something went wrong.Please try again</p>
+            <button
+              type="button"
+              className="retry-button"
+              onClick={this.onClickPostRetry}
+            >
+              Retry
+            </button>
+          </div>
+        )
 
       default:
         return null

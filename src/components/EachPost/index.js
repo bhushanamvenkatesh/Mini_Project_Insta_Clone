@@ -2,9 +2,10 @@ import './index.css'
 import {BsHeartFill} from 'react-icons/bs'
 import {FaRegComment} from 'react-icons/fa'
 import {BiShareAlt} from 'react-icons/bi'
+import {Link} from 'react-router-dom'
 
 const EachPost = props => {
-  const {each} = props
+  const {each, onClickLike} = props
   // console.log(each)
   const {
     comments,
@@ -20,16 +21,23 @@ const EachPost = props => {
     caption: postDetails.caption,
   }
 
+  const onClickHeartSymbol = () => {
+    //  console.log(userId)
+    onClickLike(userId)
+  }
+
   return (
     <div className="post-container">
       <div className="profile-image-container">
         <img src={profilePic} alt="" className="profile-image" />
-        <h1 className="user-name ">{userName}</h1>
+        <Link to={`users/${userId}`} className="user-id">
+          <h1 className="user-name ">{userName}</h1>
+        </Link>
       </div>
-      <img src={formattedPostDetails.imageUrl} alt="" className="post-image" />
+      <img src={formattedPostDetails.imageUrl} alt="" className="post-image1" />
       <div className="post-details-container">
         <div className="icons">
-          <BsHeartFill className="heart-icon" />
+          <BsHeartFill className="heart-icon" onClick={onClickHeartSymbol} />
           <FaRegComment className="comment-icon " />
           <BiShareAlt className="share" />
         </div>

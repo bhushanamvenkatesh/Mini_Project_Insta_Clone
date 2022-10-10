@@ -17,12 +17,14 @@ const Header = props => {
   return (
     <div className="nav-bar">
       <div className="logo-text-container">
-        <img
-          src="https://res.cloudinary.com/dysfydgi3/image/upload/v1664437256/MINI_PROJECT/Header_insta_share_img_yqcg1x.png"
-          alt=""
-          className=""
-        />
-        <p className="insta-share-text">Insta Share</p>
+        <Link to="/" className="logo-heading">
+          <img
+            src="https://res.cloudinary.com/dysfydgi3/image/upload/v1664437256/MINI_PROJECT/Header_insta_share_img_yqcg1x.png"
+            alt=""
+            className=""
+          />
+          <h1 className="insta-share-text">Insta Share</h1>
+        </Link>
       </div>
       <div className="header-rem-options">
         <div className="search-container">
@@ -35,10 +37,10 @@ const Header = props => {
           <BiSearch onClick={onClickSearchIcon} />
         </div>
         <ul className="nav-list">
-          <Link to="./" className="link-style">
+          <Link to="/" className="link-style">
             <li>Home</li>
           </Link>
-          <Link to="./profile" className="link-style">
+          <Link to="/profile" className="link-style">
             <li>Profile</li>
           </Link>
         </ul>
