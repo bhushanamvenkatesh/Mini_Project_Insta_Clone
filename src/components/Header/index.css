@@ -73,3 +73,9 @@
 
   color: black;
 }
+
+.search-input {
+  border: none;
+
+  outline: none;
+}

@@ -1,17 +1,24 @@
 import './index.css'
 import {Link, withRouter} from 'react-router-dom'
-import {BiSearch} from 'react-icons/bi'
+import {FaSearch} from 'react-icons/fa'
+import Cookies from 'js-cookie'
 
 const Header = props => {
-  const onClickSearchIcon = () => {}
+  const {onClickSearchInput, onClickSearch} = props
+
+  const onClickSearchIcon = () => {
+    onClickSearch()
+  }
 
   const onChangeInput = event => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
+    onClickSearchInput(event.target.value)
   }
 
   const onClickLogOut = () => {
     const {history} = props
     history.replace('./login')
+    Cookies.remove('jwt_token')
   }
 
   return (
@@ -32,9 +39,10 @@ const Header = props => {
             type="search"
             placeholder="Search Caption"
             onChange={onChangeInput}
+            className="search-input"
           />
 
-          <BiSearch onClick={onClickSearchIcon} />
+          <FaSearch onClick={onClickSearchIcon} />
         </div>
         <ul className="nav-list">
           <Link to="/" className="link-style">

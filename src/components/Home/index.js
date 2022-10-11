@@ -6,9 +6,6 @@ import UserStoriesSlider from '../UserStoriesSlider'
 import Header from '../Header'
 import './index.css'
 import EachPost from '../EachPost'
-
-// import InstaContext from '../../Context/InstaContext'
-
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
 const statusContstants = {
@@ -25,6 +22,7 @@ class Home extends Component {
     postsList: [],
     userStoriesStatus: statusContstants.initial,
     postsStatus: statusContstants.initial,
+    searchInput: '',
   }
 
   componentDidMount() {
@@ -141,24 +139,39 @@ class Home extends Component {
     }
   }
 
-  onClickLike = userId => {
-    const {postsList} = this.state
-    console.log(postsList)
-    const updatedLikes = postsList.map(each => {
-      if (each.userId === userId) {
-        return {...each, likesCount: each.likesCount + 1}
-      }
-      return each
-    })
+  //   onClickLike = userId => {
+  //     const {postsList} = this.state
+  //     //  console.log(postsList)
+  //     const updatedLikes = postsList.map(each => {
+  //       if (each.userId === userId) {
+  //         return {...each, likesCount: each.likesCount + 1}
+  //       }
+  //       return each
+  //     })
 
-    console.log(userId)
-    console.log(updatedLikes)
-  }
+  //     // console.log(userId)
+  //     // console.log(updatedLikes)
+  //   }
+
+  renderPostsNotfoundview = () => (
+    <div className="search-not-found-image">
+      <img
+        src="https://res.cloudinary.com/dysfydgi3/image/upload/v1665479977/MINI_PROJECT/SearchNotFound_u3ndza.png"
+        alt="search not found"
+        className="search-image"
+      />
+      <h1>Search Not Found</h1>
+      <p className="try-different">Try different keyword or search again </p>
+    </div>
+  )
 
   renderPosts = () => {
     const {postsList} = this.state
     // console.log(postsList)
-    return (
+    const postsLength = postsList.length
+    // console.log(postsLength)
+
+    return postsLength > 0 ? (
       <ul>
         {postsList.map(each => (
           <EachPost
@@ -168,11 +181,17 @@ class Home extends Component {
           />
         ))}
       </ul>
+    ) : (
+      this.renderPostsNotfoundview()
     )
   }
 
   onClickPostRetry = () => {
     this.getPostsData()
+  }
+
+  onClickSearchInput = value => {
+    this.setState({searchInput: value})
   }
 
   renderPostsSection = () => {
@@ -202,10 +221,57 @@ class Home extends Component {
     }
   }
 
+  renderSearchResult = data => {
+    // console.log(data)
+    this.setState({postsStatus: statusContstants.postSuccess})
+    const searchPosts = data.posts
+    //  const postsLength = data.total
+
+    // console.log(searchPosts)
+    const formattedSearchPosts = searchPosts.map(each => ({
+      comments: this.getComments(each.comments),
+      createdAt: each.created_at,
+      likesCount: each.likes_count,
+      postDetails: each.post_details,
+      postId: each.post_id,
+      profilePic: each.profile_pic,
+      userId: each.user_id,
+      userName: each.user_name,
+    }))
+
+    // console.log(formattedSearchPosts)
+    this.setState({postsList: formattedSearchPosts})
+  }
+
+  getSearchData = async () => {
+    const {searchInput} = this.state
+    const token = Cookies.get('jwt_token')
+    const searchApi = `https://apis.ccbp.in/insta-share/posts?search=${searchInput}`
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+
+    const response = await fetch(searchApi, options)
+    const data = await response.json()
+    //  console.log(data)
+    this.renderSearchResult(data)
+  }
+
+  onClickSearch = () => {
+    this.getSearchData()
+    this.setState({postsStatus: statusContstants.initial})
+  }
+
   render() {
     return (
       <div className="home-container">
-        <Header />
+        <Header
+          onClickSearchInput={this.onClickSearchInput}
+          onClickSearch={this.onClickSearch}
+        />
         {this.renderStoriesSlider()}
         {this.renderPostsSection()}
       </div>

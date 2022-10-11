@@ -1,5 +1,5 @@
 import './index.css'
-import {BsHeartFill} from 'react-icons/bs'
+import {BsHeart} from 'react-icons/bs'
 import {FaRegComment} from 'react-icons/fa'
 import {BiShareAlt} from 'react-icons/bi'
 import {Link} from 'react-router-dom'
@@ -37,7 +37,7 @@ const EachPost = props => {
       <img src={formattedPostDetails.imageUrl} alt="" className="post-image1" />
       <div className="post-details-container">
         <div className="icons">
-          <BsHeartFill className="heart-icon" onClick={onClickHeartSymbol} />
+          <BsHeart className="heart-icon" onClick={onClickHeartSymbol} />
           <FaRegComment className="comment-icon " />
           <BiShareAlt className="share" />
         </div>

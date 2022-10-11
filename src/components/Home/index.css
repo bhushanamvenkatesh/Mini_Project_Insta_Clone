@@ -1,16 +1,18 @@
 .home-container {
   background: #fafafa;
   width: 1440px;
-  height: 2086px;
+  min-height: 2086px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 }
 
 .loader {
   display: flex;
   justify-content: center;
+  align-items: center;
+
+  margin: 100px;
 }
 
 .retry-button {
@@ -38,4 +40,30 @@
   background-color: blue;
   height: 44px;
   width: 38px;
+}
+
+.search-not-found-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 1024px;
+  width: 1440px;
+}
+
+.search-image {
+  height: 409px;
+
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.try-different {
+  font-family: 'Roboto';
+  font-style: normal;
+  color: #989898;
 }
