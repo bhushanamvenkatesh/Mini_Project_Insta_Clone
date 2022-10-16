@@ -3,6 +3,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {BsGrid3X3} from 'react-icons/bs'
+import {BiCamera} from 'react-icons/bi'
 // import {each} from 'cheerio/lib/api/traversing'
 import Header from '../Header'
 
@@ -31,6 +32,8 @@ class UserProfile extends Component {
     const data = await response.json()
     if (response.ok === true) {
       this.onSuccessUserProfile(data)
+    } else {
+      this.onFailUserProfile()
     }
   }
 
@@ -69,10 +72,26 @@ class UserProfile extends Component {
     <ul className="post-list">
       {posts.map(each => (
         <li key={each.id}>
-          <img src={each.image} alt="post" className="post-image" />
+          <img src={each.image} alt="user post" className="post-image" />
         </li>
       ))}
     </ul>
+  )
+
+  renderNoPostsView = () => (
+    <>
+      {/* <div className="grid-post">
+        <BsGrid3X3 />
+        <p className="padding">Posts</p>
+      </div> */}
+      <div className="no-post-container">
+        <div className="no-post-image">
+          <BiCamera className="no-post-camera" />
+        </div>
+
+        <p className="no-posts">No Posts Yet</p>
+      </div>
+    </>
   )
 
   renderProfile = () => {
@@ -117,7 +136,10 @@ class UserProfile extends Component {
           <BsGrid3X3 />
           <p className="padding">Posts</p>
         </div>
-        {this.getPostsList(posts)}
+
+        {posts.length > 0
+          ? this.getPostsList(posts)
+          : this.renderNoPostsView(posts)}
       </div>
     )
   }

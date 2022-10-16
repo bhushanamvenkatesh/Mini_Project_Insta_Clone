@@ -1,7 +1,7 @@
 import './index.css'
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-// import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
 class Login extends Component {
   state = {username: '', password: '', erroMsg: '', error: false}
@@ -11,7 +11,7 @@ class Login extends Component {
   onSubmitSuccess = token => {
     Cookies.set('jwt_token', token, {expires: 30})
     const {history} = this.props
-    history.replace('./')
+    history.replace('/')
   }
 
   getData = async () => {
@@ -37,7 +37,7 @@ class Login extends Component {
     <div className="login-image-container">
       <img
         src="https://res.cloudinary.com/dysfydgi3/image/upload/v1664385004/MINI_PROJECT/loginImage_otsvzj.png"
-        alt=""
+        alt="website login"
         className="login-image"
       />
     </div>
@@ -49,9 +49,12 @@ class Login extends Component {
 
   renderUserName = () => (
     <div className="user-name-container">
-      <p className="username">USER NAME</p>
+      <label className="username" type="text" htmlFor="user">
+        USERNAME
+      </label>
       <input
         type="text"
+        id="user"
         className="input-container"
         placeholder="user name"
         onChange={this.onChangeUserName}
@@ -65,12 +68,15 @@ class Login extends Component {
 
   renderPassWord = () => (
     <div className="user-name-container">
-      <p className="username">USER NAME</p>
+      <label className="username" type="password" htmlFor="pass">
+        PASSWORD
+      </label>
       <input
         type="password"
         className="input-container"
         placeholder="password"
         onChange={this.onChangePassword}
+        id="pass"
       />
     </div>
   )
@@ -83,6 +89,13 @@ class Login extends Component {
 
   render() {
     const {erroMsg, error} = this.state
+    const token = Cookies.get('jwt_token')
+
+    if (token !== undefined) {
+      return <Redirect to="/" />
+      // const {history} = this.props
+      //  history.replace('/')
+    }
     return (
       <div className="login-container d-row">
         {this.loginImageContainer()}
@@ -90,7 +103,7 @@ class Login extends Component {
         <form className="my-form d-col" onSubmit={this.onSubmitMyForm}>
           <img
             src="https://res.cloudinary.com/dysfydgi3/image/upload/v1664385281/MINI_PROJECT/instaShare_xthfd3.png"
-            alt=""
+            alt="website logo"
             className="insta-share-image"
           />
           <h1>Insta Share</h1>

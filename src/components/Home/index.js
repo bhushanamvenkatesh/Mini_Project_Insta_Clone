@@ -72,6 +72,7 @@ class Home extends Component {
       profilePic: each.profile_pic,
       userId: each.user_id,
       userName: each.user_name,
+      isLiked: false,
     }))
     // console.log(formattedPostsList)
     this.setState({
@@ -110,8 +111,12 @@ class Home extends Component {
   }
 
   renderLoader = () => (
-    <div className="loader">
-      <Loader type="TailSpin" colour="#00bfbfbf" height={50} width={50} />
+    // <div className="loader">
+    //   <Loader type="TailSpin" colour="#00bfbfbf" height={50} width={50} />
+    // </div>
+
+    <div className="loader-container">
+      <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
     </div>
   )
 
@@ -139,19 +144,21 @@ class Home extends Component {
     }
   }
 
-  //   onClickLike = userId => {
-  //     const {postsList} = this.state
-  //     //  console.log(postsList)
-  //     const updatedLikes = postsList.map(each => {
-  //       if (each.userId === userId) {
-  //         return {...each, likesCount: each.likesCount + 1}
-  //       }
-  //       return each
-  //     })
+  onClickLike = userId => {
+    this.setState(prevState => ({
+      postsList: prevState.postsList.map(each => {
+        if (each.userId === userId) {
+          //  console.log(prevState)
+          return {
+            ...each,
 
-  //     // console.log(userId)
-  //     // console.log(updatedLikes)
-  //   }
+            isLiked: !each.isLiked,
+          }
+        }
+        return each
+      }),
+    }))
+  }
 
   renderPostsNotfoundview = () => (
     <div className="search-not-found-image">
@@ -204,7 +211,7 @@ class Home extends Component {
       case 'FAIL':
         return (
           <div className="home-retry">
-            <RiAlertFill className="alert-triangle" />
+            <RiAlertFill className="alert-triangle" alt="failure view" />
             <p>Something went wrong.Please try again</p>
             <button
               type="button"

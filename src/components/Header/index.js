@@ -27,11 +27,10 @@ const Header = props => {
         <Link to="/" className="logo-heading">
           <img
             src="https://res.cloudinary.com/dysfydgi3/image/upload/v1664437256/MINI_PROJECT/Header_insta_share_img_yqcg1x.png"
-            alt=""
-            className=""
+            alt="website logo"
           />
-          <h1 className="insta-share-text">Insta Share</h1>
         </Link>
+        <h1 className="insta-share-text">Insta Share</h1>
       </div>
       <div className="header-rem-options">
         <div className="search-container">
@@ -42,17 +41,24 @@ const Header = props => {
             className="search-input"
           />
 
-          <FaSearch onClick={onClickSearchIcon} />
+          <button type="button">
+            <FaSearch testid="searchIcon" onClick={onClickSearchIcon} />
+          </button>
         </div>
         <ul className="nav-list">
           <Link to="/" className="link-style">
             <li>Home</li>
           </Link>
-          <Link to="/profile" className="link-style">
+          <Link to="/my-profile" className="link-style">
             <li>Profile</li>
           </Link>
         </ul>
-        <button className="logout-button" type="button" onClick={onClickLogOut}>
+        <button
+          className="logout-button"
+          type="button"
+          onClick={onClickLogOut}
+          // testid="searchIcon"
+        >
           Logout
         </button>
       </div>

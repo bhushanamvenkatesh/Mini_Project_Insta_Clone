@@ -16,7 +16,7 @@ const App = () => (
       <Route exact path="/login" component={Login} />
 
       <ProtectedRoute exact path="/" component={Home} />
-      <ProtectedRoute exact path="/profile" component={Profile} />
+      <ProtectedRoute exact path="/my-profile" component={Profile} />
       <ProtectedRoute exact path="/users/:userId" component={UserProfile} />
       <Route exact path="/not-found" component={NotFound} />
       <Redirect to="not-found" />

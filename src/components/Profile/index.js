@@ -3,7 +3,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {BsGrid3X3} from 'react-icons/bs'
-import {AiFillCamera} from 'react-icons/ai'
+import {BiCamera} from 'react-icons/bi'
 
 import Header from '../Header'
 
@@ -60,7 +60,7 @@ class Profile extends Component {
     <ul className="post-list">
       {stories.map(each => (
         <li key={each.id} className="each-image">
-          <img src={each.image} alt="user story" className="story-image" />
+          <img src={each.image} alt="my story" className="story-image" />
         </li>
       ))}
     </ul>
@@ -70,7 +70,7 @@ class Profile extends Component {
     <ul className="post-list">
       {posts.map(each => (
         <li key={each.id}>
-          <img src={each.image} alt="post" className="post-image" />
+          <img src={each.image} alt="my post" className="post-image" />
         </li>
       ))}
     </ul>
@@ -101,7 +101,7 @@ class Profile extends Component {
       </div>
       <div className="no-post-container">
         <div className="no-post-image">
-          <AiFillCamera className="no-post-camera" />
+          <BiCamera className="no-post-camera" />
         </div>
 
         <p className="no-posts">No Posts Yet</p>
@@ -126,11 +126,7 @@ class Profile extends Component {
       <div className="profile-details">
         <div className="profile-pic-details">
           <div className="user-image-container">
-            <img
-              src={profilePic}
-              alt="user profile"
-              className="profile-image1"
-            />
+            <img src={profilePic} alt="my profile" className="profile-image1" />
           </div>
           <div className="user-details">
             <p className="padding user-name">{userName}</p>

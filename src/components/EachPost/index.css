@@ -99,3 +99,9 @@
 .user-id {
   text-decoration: none;
 }
+
+.like-button {
+  background-color: none;
+  border: none;
+  background-color: transparent;
+}

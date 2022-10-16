@@ -46,18 +46,15 @@ class UserStoriesSlider extends Component {
       <Slider {...settings}>
         {userStoriesList.map(eachLogo => {
           const {userId, userName, storyUrl} = eachLogo
+          // console.log(eachLogo)
           return (
-            <div key={userId} className="item">
+            <li className="item" key={userId}>
               <div className="story-image-container">
-                <img
-                  className="story-image"
-                  src={storyUrl}
-                  alt="company logo"
-                />
+                <img className="story-image" src={storyUrl} alt="user story" />
               </div>
 
               <p>{userName}</p>
-            </div>
+            </li>
           )
         })}
       </Slider>
