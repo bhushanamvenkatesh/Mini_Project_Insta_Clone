@@ -17,7 +17,7 @@ const Header = props => {
 
   const onClickLogOut = () => {
     const {history} = props
-    history.replace('./login')
+    history.replace('/login')
     Cookies.remove('jwt_token')
   }
 
@@ -53,12 +53,7 @@ const Header = props => {
             <li>Profile</li>
           </Link>
         </ul>
-        <button
-          className="logout-button"
-          type="button"
-          onClick={onClickLogOut}
-          // testid="searchIcon"
-        >
+        <button className="logout-button" type="button" onClick={onClickLogOut}>
           Logout
         </button>
       </div>

@@ -68,7 +68,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
-
+  margin: 0px;
   color: #262626;
 }
 
@@ -79,6 +79,7 @@
   font-size: 14px;
   line-height: 18px;
   color: #262626;
+  margin: 2px;
 }
 
 .time {
@@ -87,6 +88,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
+  margin: 0px;
 
   color: #989898;
 }

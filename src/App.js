@@ -4,7 +4,7 @@ import NotFound from './components/NotFound'
 
 import Login from './components/Login'
 import Home from './components/Home'
-import Profile from './components/Profile'
+import MyProfile from './components/MyProfile'
 import UserProfile from './components/UserProfile'
 import ProtectedRoute from './components/ProtectedRoute'
 
@@ -16,7 +16,7 @@ const App = () => (
       <Route exact path="/login" component={Login} />
 
       <ProtectedRoute exact path="/" component={Home} />
-      <ProtectedRoute exact path="/my-profile" component={Profile} />
+      <ProtectedRoute exact path="/my-profile" component={MyProfile} />
       <ProtectedRoute exact path="/users/:userId" component={UserProfile} />
       <Route exact path="/not-found" component={NotFound} />
       <Redirect to="not-found" />

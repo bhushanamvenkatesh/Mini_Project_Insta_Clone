@@ -56,6 +56,7 @@ class UserProfile extends Component {
     // console.log(formattedData.posts, formattedData.stories)
 
     this.setState({userProfile: formattedData, isLoading: false})
+    console.log(stories)
   }
 
   getStories = stories => (
@@ -134,7 +135,7 @@ class UserProfile extends Component {
         <hr className="h-line" />
         <div className="grid-post">
           <BsGrid3X3 />
-          <p className="padding">Posts</p>
+          <h1 className="padding posts-heading">Posts</h1>
         </div>
 
         {posts.length > 0
@@ -145,7 +146,7 @@ class UserProfile extends Component {
   }
 
   renderLoader = () => (
-    <div className="loader">
+    <div testid="loader" className="loader">
       <Loader type="TailSpin" height={50} width={50} />
     </div>
   )

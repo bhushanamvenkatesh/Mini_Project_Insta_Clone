@@ -67,3 +67,8 @@
   font-style: normal;
   color: #989898;
 }
+
+.search-result-heading {
+  align-self: center;
+  width: 1040px;
+}

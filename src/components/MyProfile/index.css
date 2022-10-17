@@ -32,6 +32,8 @@
 }
 .post-followers-following-count {
   display: flex;
+  list-style: none;
+  padding: 0px;
 }
 
 .user-image-container {
@@ -132,4 +134,8 @@
 
 .no-posts {
   font-family: 'roboto';
+}
+
+.posts-heading {
+  font-size: 15px;
 }

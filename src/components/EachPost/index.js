@@ -54,7 +54,7 @@ const EachPost = props => {
   const likes = isLiked ? likesCount + 1 : likesCount
 
   return (
-    <li className="post-container">
+    <li className="post-container" key={each.postId}>
       <div className="profile-image-container">
         <img
           src={profilePic}
@@ -62,7 +62,9 @@ const EachPost = props => {
           className="profile-image"
         />
         <Link to={`users/${userId}`} className="user-id">
-          <h1 className="user-name ">{userName}</h1>
+          <span>
+            <h1 className="user-name ">{userName}</h1>
+          </span>
         </Link>
       </div>
       <img
@@ -76,6 +78,7 @@ const EachPost = props => {
             onClick={onClickHeartSymbol}
             type="button"
             className="like-button"
+            testid="likeIcon"
           >
             {isLiked ? (
               <BsHeartFill className="heart-icon" testid="likeIcon" />
@@ -90,7 +93,9 @@ const EachPost = props => {
         <p className="caption">{formattedPostDetails.caption}</p>
         <ul className="comments-list">
           {comments.map(eachComment => (
-            <li key={eachComment.userId}>{eachComment.comment}</li>
+            <li key={eachComment.userId}>
+              <p>{eachComment.comment}</p>
+            </li>
           ))}
         </ul>
         <p className="time">{createdAt}</p>

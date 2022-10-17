@@ -7,19 +7,15 @@ import {BiCamera} from 'react-icons/bi'
 
 import Header from '../Header'
 
-class Profile extends Component {
+class MyProfile extends Component {
   state = {profileData: [], isLoading: true}
 
   componentDidMount() {
-    this.getUserProfile()
+    this.getMyProfile()
   }
 
-  getUserProfile = async () => {
-    // const {match} = this.props
-    //  const {params} = match
-    // const {userId} = params
+  getMyProfile = async () => {
     const token = Cookies.get('jwt_token')
-    // console.log(token)
     const url = `https://apis.ccbp.in/insta-share/my-profile`
     const options = {
       method: 'get',
@@ -37,8 +33,6 @@ class Profile extends Component {
 
   onSuccessProfile = data => {
     const profile = {...data.profile}
-    //  console.log(profile)
-
     const formattedData = {
       followersCount: profile.followers_count,
       followingCount: profile.following_count,
@@ -51,30 +45,23 @@ class Profile extends Component {
       userId: profile.user_id,
       userName: profile.user_name,
     }
-    //  console.log(formattedData)
 
     this.setState({profileData: formattedData, isLoading: false})
   }
 
-  getStories = stories => (
-    <ul className="post-list">
-      {stories.map(each => (
-        <li key={each.id} className="each-image">
-          <img src={each.image} alt="my story" className="story-image" />
-        </li>
-      ))}
-    </ul>
-  )
+  getStories = stories =>
+    stories.map(each => (
+      <li key={each.id} className="each-image">
+        <img src={each.image} alt="my story" className="story-image" />
+      </li>
+    ))
 
-  getPostsList = posts => (
-    <ul className="post-list">
-      {posts.map(each => (
-        <li key={each.id}>
-          <img src={each.image} alt="my post" className="post-image" />
-        </li>
-      ))}
-    </ul>
-  )
+  getPostsList = posts =>
+    posts.map(each => (
+      <li key={each.id}>
+        <img src={each.image} alt="my post" className="post-image" />
+      </li>
+    ))
 
   renderPosts = () => {
     const {profileData} = this.state
@@ -82,13 +69,14 @@ class Profile extends Component {
 
     return (
       <>
-        {this.getStories(stories)}
+        <ul className="post-list">{this.getStories(stories)}</ul>
+
         <hr className="h-line" />
         <div className="grid-post">
           <BsGrid3X3 />
-          <p className="padding">Posts</p>
+          <h1 className="padding posts-heading">Posts</h1>
         </div>
-        {this.getPostsList(posts)}
+        <ul className="post-list">{this.getPostsList(posts)}</ul>
       </>
     )
   }
@@ -109,7 +97,7 @@ class Profile extends Component {
     </>
   )
 
-  renderProfile = () => {
+  renderMyProfile = () => {
     const {profileData} = this.state
     const {
       profilePic,
@@ -129,24 +117,24 @@ class Profile extends Component {
             <img src={profilePic} alt="my profile" className="profile-image1" />
           </div>
           <div className="user-details">
-            <p className="padding user-name">{userName}</p>
-            <div className="post-followers-following-count ">
-              <p className="count padding">{`${postsCount} Posts`}</p>
-              <p className="count padding">{`${followersCount} followers`}</p>
-              <p className="count padding">{`${followingCount} following`}</p>
-            </div>
+            <h1 className="padding user-name">{userName}</h1>
+            <ul className="post-followers-following-count ">
+              <li className="count padding">{`${postsCount} Posts`}</li>
+              <li className="count padding">{`${followersCount} followers`}</li>
+              <li className="count padding">{`${followingCount} following`}</li>
+            </ul>
             <p className="padding user-id">{userId}</p>
             <p className="padding">{userBio}</p>
           </div>
         </div>
 
-        {posts.length > 0 ? this.renderPosts() : this.renderNoPostsView(posts)}
+        {posts.length > 0 ? this.renderPosts() : this.renderNoPostsView()}
       </div>
     )
   }
 
   renderLoader = () => (
-    <div className="loader">
+    <div testid="loader" className="loader">
       <Loader type="TailSpin" height={50} width={50} />
     </div>
   )
@@ -157,9 +145,9 @@ class Profile extends Component {
     return (
       <div className="user-profile-container">
         <Header />
-        {isLoading ? this.renderLoader() : this.renderProfile()}
+        {isLoading ? this.renderLoader() : this.renderMyProfile()}
       </div>
     )
   }
 }
-export default Profile
+export default MyProfile

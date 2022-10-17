@@ -14,6 +14,7 @@ const statusContstants = {
   userStoriesFailure: 'FAILURE',
   postSuccess: 'SUCCESS',
   postFailure: 'FAIL',
+  searchFailure: 'TRUE',
 }
 
 class Home extends Component {
@@ -101,6 +102,7 @@ class Home extends Component {
       userName: each.user_name,
       storyUrl: each.story_url,
     }))
+
     this.setState({
       userStoriesList: formattedData,
       userStoriesStatus: statusContstants.userStoriesSuccess,
@@ -111,11 +113,7 @@ class Home extends Component {
   }
 
   renderLoader = () => (
-    // <div className="loader">
-    //   <Loader type="TailSpin" colour="#00bfbfbf" height={50} width={50} />
-    // </div>
-
-    <div className="loader-container">
+    <div testid="loader" className="loader-container">
       <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
     </div>
   )
@@ -174,9 +172,7 @@ class Home extends Component {
 
   renderPosts = () => {
     const {postsList} = this.state
-    // console.log(postsList)
     const postsLength = postsList.length
-    // console.log(postsLength)
 
     return postsLength > 0 ? (
       <ul>
@@ -201,6 +197,28 @@ class Home extends Component {
     this.setState({searchInput: value})
   }
 
+  onClickRetrySearchFailure = () => {
+    this.onClickSearch()
+  }
+
+  renderPostFailure = () => (
+    <div>
+      <img
+        src="https://res.cloudinary.com/dysfydgi3/image/upload/v1665993040/MINI_PROJECT/SearchFailure_iupxnf.png"
+        className=""
+        alt="failure view"
+      />
+      <p>Something went wrong. Please try again</p>
+      <button
+        onClick={this.onClickRetrySearchFailure}
+        className="retry-button"
+        type="button"
+      >
+        Retry
+      </button>
+    </div>
+  )
+
   renderPostsSection = () => {
     const {postsStatus} = this.state
     switch (postsStatus) {
@@ -222,6 +240,8 @@ class Home extends Component {
             </button>
           </div>
         )
+      case 'TRUE':
+        return this.renderPostFailure()
 
       default:
         return null
@@ -229,12 +249,8 @@ class Home extends Component {
   }
 
   renderSearchResult = data => {
-    // console.log(data)
     this.setState({postsStatus: statusContstants.postSuccess})
     const searchPosts = data.posts
-    //  const postsLength = data.total
-
-    // console.log(searchPosts)
     const formattedSearchPosts = searchPosts.map(each => ({
       comments: this.getComments(each.comments),
       createdAt: each.created_at,
@@ -248,6 +264,10 @@ class Home extends Component {
 
     // console.log(formattedSearchPosts)
     this.setState({postsList: formattedSearchPosts})
+  }
+
+  renderSearchFailure = () => {
+    this.setState({postsStatus: statusContstants.searchFailure})
   }
 
   getSearchData = async () => {
@@ -264,7 +284,11 @@ class Home extends Component {
     const response = await fetch(searchApi, options)
     const data = await response.json()
     //  console.log(data)
-    this.renderSearchResult(data)
+    if (response.ok === true) {
+      this.renderSearchResult(data)
+    } else {
+      this.renderSearchFailure()
+    }
   }
 
   onClickSearch = () => {
@@ -273,14 +297,24 @@ class Home extends Component {
   }
 
   render() {
+    const {searchInput} = this.state
     return (
       <div className="home-container">
         <Header
           onClickSearchInput={this.onClickSearchInput}
           onClickSearch={this.onClickSearch}
         />
-        {this.renderStoriesSlider()}
-        {this.renderPostsSection()}
+        {searchInput ? (
+          <>
+            <h1 className="search-result-heading">Search Results</h1>
+            {this.renderPostsSection()}
+          </>
+        ) : (
+          <>
+            {this.renderStoriesSlider()}
+            {this.renderPostsSection()}
+          </>
+        )}
       </div>
     )
   }
