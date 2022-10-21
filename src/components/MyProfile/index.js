@@ -134,7 +134,7 @@ class MyProfile extends Component {
   }
 
   renderLoader = () => (
-    <div testid="loader" className="loader">
+    <div className="loader">
       <Loader type="TailSpin" height={50} width={50} />
     </div>
   )

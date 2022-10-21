@@ -93,9 +93,8 @@ class Login extends Component {
 
     if (token !== undefined) {
       return <Redirect to="/" />
-      // const {history} = this.props
-      //  history.replace('/')
     }
+
     return (
       <div className="login-container d-row">
         {this.loginImageContainer()}

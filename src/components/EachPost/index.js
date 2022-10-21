@@ -78,7 +78,7 @@ const EachPost = props => {
             onClick={onClickHeartSymbol}
             type="button"
             className="like-button"
-            testid="likeIcon"
+            // testid="likeIcon"
           >
             {isLiked ? (
               <BsHeartFill className="heart-icon" testid="likeIcon" />
@@ -94,7 +94,9 @@ const EachPost = props => {
         <ul className="comments-list">
           {comments.map(eachComment => (
             <li key={eachComment.userId}>
-              <p>{eachComment.comment}</p>
+              <p>
+                <spna>{eachComment.comment}</spna>
+              </p>
             </li>
           ))}
         </ul>

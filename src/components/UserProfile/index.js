@@ -56,7 +56,7 @@ class UserProfile extends Component {
     // console.log(formattedData.posts, formattedData.stories)
 
     this.setState({userProfile: formattedData, isLoading: false})
-    console.log(stories)
+    // console.log(stories)
   }
 
   getStories = stories => (
@@ -81,16 +81,13 @@ class UserProfile extends Component {
 
   renderNoPostsView = () => (
     <>
-      {/* <div className="grid-post">
-        <BsGrid3X3 />
-        <p className="padding">Posts</p>
-      </div> */}
+      
       <div className="no-post-container">
         <div className="no-post-image">
           <BiCamera className="no-post-camera" />
         </div>
 
-        <p className="no-posts">No Posts Yet</p>
+        <h1 className="no-posts">No Posts</h1>
       </div>
     </>
   )
@@ -121,7 +118,7 @@ class UserProfile extends Component {
           </div>
 
           <div className="user-details">
-            <p className="padding user-name">{userName}</p>
+            <h1 className="padding user-name">{userName}</h1>
             <div className="post-followers-following-count ">
               <p className="count padding">{`${postsCount} Posts`}</p>
               <p className="count padding">{`${followersCount} followers`}</p>
@@ -146,7 +143,7 @@ class UserProfile extends Component {
   }
 
   renderLoader = () => (
-    <div testid="loader" className="loader">
+    <div className="loader" testid="loader">
       <Loader type="TailSpin" height={50} width={50} />
     </div>
   )

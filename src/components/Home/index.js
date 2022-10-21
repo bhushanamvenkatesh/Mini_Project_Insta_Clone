@@ -1,9 +1,11 @@
 import {Component} from 'react'
+
 import {RiAlertFill} from 'react-icons/ri'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import UserStoriesSlider from '../UserStoriesSlider'
 import Header from '../Header'
+import H1 from '../NavBar'
 import './index.css'
 import EachPost from '../EachPost'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
@@ -24,6 +26,7 @@ class Home extends Component {
     userStoriesStatus: statusContstants.initial,
     postsStatus: statusContstants.initial,
     searchInput: '',
+    searchClicked: false,
   }
 
   componentDidMount() {
@@ -113,7 +116,7 @@ class Home extends Component {
   }
 
   renderLoader = () => (
-    <div testid="loader" className="loader-container">
+    <div className="loader-container">
       <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
     </div>
   )
@@ -194,7 +197,12 @@ class Home extends Component {
   }
 
   onClickSearchInput = value => {
-    this.setState({searchInput: value})
+    if (value === '') {
+      this.setState({searchClicked: false})
+      this.getPostsData()
+    } else {
+      this.setState({searchInput: value})
+    }
   }
 
   onClickRetrySearchFailure = () => {
@@ -293,18 +301,24 @@ class Home extends Component {
 
   onClickSearch = () => {
     this.getSearchData()
-    this.setState({postsStatus: statusContstants.initial})
+    this.setState({postsStatus: statusContstants.initial, searchClicked: true})
+    /* if (searchInput === '') {
+      this.setState({searchClicked: false})
+    } */
   }
 
   render() {
-    const {searchInput} = this.state
+    const {searchClicked, searchInput} = this.state
+
     return (
       <div className="home-container">
         <Header
           onClickSearchInput={this.onClickSearchInput}
           onClickSearch={this.onClickSearch}
+          searchInput={searchInput}
         />
-        {searchInput ? (
+
+        {searchClicked ? (
           <>
             <h1 className="search-result-heading">Search Results</h1>
             {this.renderPostsSection()}

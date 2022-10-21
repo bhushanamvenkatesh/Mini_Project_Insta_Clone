@@ -39,6 +39,7 @@ const Header = props => {
             placeholder="Search Caption"
             onChange={onChangeInput}
             className="search-input"
+            // value={searchInput}
           />
 
           <button type="button">
@@ -46,12 +47,17 @@ const Header = props => {
           </button>
         </div>
         <ul className="nav-list">
-          <Link to="/" className="link-style">
-            <li>Home</li>
-          </Link>
-          <Link to="/my-profile" className="link-style">
-            <li>Profile</li>
-          </Link>
+          <li>
+            <Link to="/" className="link-style">
+              Home
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/my-profile" className="link-style">
+              Profile
+            </Link>
+          </li>
         </ul>
         <button className="logout-button" type="button" onClick={onClickLogOut}>
           Logout
